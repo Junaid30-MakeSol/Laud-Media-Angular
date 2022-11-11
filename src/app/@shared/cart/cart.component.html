@@ -1,0 +1,122 @@
+<ng-container *ngIf="products.length != 0">
+  <h5>Cart</h5>
+
+  <div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Info</h4>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <p class="col-xs-4">Reg. Nummer</p>
+              <p class="col-xs-8 ng-binding">{{ resultValue?.RegistrationNumber }}</p>
+
+              <p class="col-xs-4">Firma Navn</p>
+              <p class="col-xs-8 ng-binding">{{ resultValue?.CompanyName }}</p>
+
+              <p class="col-xs-4">Ansattnavn</p>
+              <p class="col-xs-8 ng-binding">
+                {{ resultValue?.Name }}
+              </p>
+
+              <p class="col-xs-4">Født</p>
+              <p class="col-xs-8 ng-binding">
+                {{ resultValue?.DOB | date: 'dd.MM.yyyy' }}
+              </p>
+
+              <p class="col-xs-4">Adresse</p>
+              <p class="col-xs-8 ng-binding">
+                {{ resultValue?.Address }}
+              </p>
+
+              <p class="col-xs-4">Sted</p>
+              <p class="col-xs-8 ng-binding">
+                {{ resultValue?.City }}
+              </p>
+
+              <p class="col-xs-4">Postnummer</p>
+              <p class="col-xs-8 ng-binding">
+                {{ resultValue?.ZipCode }}
+              </p>
+
+              <p class="col-xs-4">Kontakt</p>
+              <p class="col-xs-8">
+                <a href="tel:03204841304" class="ng-binding">{{ resultValue?.Mobile }}</a>
+                <!-- ngIf: foretak.telefonnummer --><br ng-if="foretak.telefonnummer" />
+
+                <a href="mailto:junaid.zahid30@gmail.com" class="ng-binding">{{ resultValue?.Email }}</a>
+                <!-- ngIf: foretak.epost --><br ng-if="foretak.epost" />
+                <!-- end ngIf: foretak.epost -->
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12" *ngFor="let item of products; let i = index">
+      <div class="row" id="{{ item.Id }}">
+        <div class="col-6">
+          <div class=" ">
+            {{ item.Name }}
+            <small class=" ">{{ item.Number }}</small>
+            <small>( {{ item.Price | CustomDigit }} ) </small>
+          </div>
+
+          <small class=" ">{{ item.Description }}</small>
+        </div>
+        <div class="col-2 p-0">
+          <input
+            [(ngModel)]="item.Quantity"
+            [ngModelOptions]="{ standalone: true }"
+            min="1"
+            type="number"
+            value="{{ item.Quantity }}"
+            name=""
+            class="form-control"
+            (change)="changeSubtotal(item, i)"
+          />
+        </div>
+        <div class="col-2 pr-0">
+          <div #subTotalWrap>{{ item.Price | currency: 'NOK' }}</div>
+        </div>
+        <div class="col-1 pl-0">
+          <button class="btn btn-secondary" (click)="removeItem(item)">x</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <hr />
+      <div>
+        Order Total:
+        <span class="font-weight-bold">{{ total | CustomDigit }}</span>
+        <hr />
+        <button class="btn btn-primary" (click)="emptycart()">Empty Cart</button>
+        <button class="btn btn-primary" routerLink="/shoppingcart-product">Shop More</button>
+        <button class="btn btn-primary" (click)="onSubmit()">Buy</button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="products.length == 0">
+  <div class="container">
+    <div class="card">
+      <h5 class="card-title">My Cart</h5>
+    </div>
+    <div class="center">
+      <img
+        src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
+        alt=""
+      />
+      <h4>Your cart is empty!</h4>
+      <h6>Add item to it now</h6>
+      <button routerLink="/shoppingcart-product" class="btn btn-primary">Shop Now</button>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,37 @@
+<app-ngx-file-uploader [EntityId]="EntityId" [EntityType]="EntityType" (allFileUploaded)="fileUploaded()">
+</app-ngx-file-uploader>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      Dokumenter
+    </h4>
+  </div>
+
+  <form ourForm="ngForm">
+    <div *ngFor="let file of files" class="row" style="padding: 20px;">
+      <div class="col-md-10">
+        <h4 class="list-group-item-heading">
+          <a href="{{ baseUrl }}{{ file.FileUploadedName }}" target="_blank">
+            {{ file.FileName }}
+          </a>
+        </h4>
+        <div>
+          {{ file.FileDescription }}
+        </div>
+      </div>
+      <div class="col-md-2">
+        <a (click)="editFile(file)">
+          <i class="fas fa-edit"> </i>
+          <fa-icon [icon]="edit"></fa-icon>
+        </a>
+        &nbsp;
+        <a (click)="deleteFile($event, file.FileGuId)">
+          <i class="fa fa-trash-alt"> </i>
+          <fa-icon [icon]="delete" style="color: #db0000;"></fa-icon>
+        </a>
+      </div>
+    </div>
+    <app-document-edit (fileStatusChange)="fileStatusChange($event)"></app-document-edit>
+  </form>
+</div>

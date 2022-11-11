@@ -1,0 +1,27 @@
+<ng-template #notesModal let-modal>
+  <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" translate>Global.Notes Add</h4>
+      <button type="button" class="close" aria-label="Close" (click)="closeNotesModal($event)"></button>
+    </div>
+
+    <div class="modal-body">
+      <div class="form-horizontal">
+        <div class="row">
+          <label class="col-sm-3 control-label font-weight-bold" translate>Global.Text</label>
+          <div class="col-sm-9">
+            <div class="form-group" [customErrorMessages]="customErrorMessages">
+              <label class="control-label" style="display: none;" translate>Global.Text</label>
+              <textarea rows="10" cols="100" formControlName="Text" class="form-control" maxlength="500"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-default btn-success" [disabled]="btnDisabled" translate>Global.Save</button>
+      <button type="button" class="btn btn-link" (click)="closeNotesModal($event)" translate>Global.Cancel</button>
+    </div>
+  </form>
+</ng-template>

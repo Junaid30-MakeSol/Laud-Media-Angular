@@ -1,0 +1,35 @@
+<ng-template #fileModal let-modal>
+  <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" translate>Dokumentbeskrivelse</h4>
+      <button type="button" class="close" aria-label="Close" (click)="closeFileModal($event)"></button>
+    </div>
+
+    <div class="modal-body ng-scope">
+      <div class="form-horizontal2 ng-pristine ng-valid" ng-form="mc.tilknyttetDokumentForm">
+        <div class="form-group ng-scope" ng-if="mc.tilknyttetDokument.fil">
+          <label class="control-label">Dokumentnavn</label>
+
+          <p class="form-control-static ng-binding">{{ fileName }}</p>
+        </div>
+
+        <div class="form-group" [customErrorMessages]="customErrorMessages">
+          <label class="control-label" for="dokbesk">Beskrivelse</label>
+          <textarea
+            ngbAutofocus
+            rows="10"
+            cols="100"
+            formControlName="Description"
+            class="form-control"
+            maxlength="500"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-default btn-success" translate>Oppdater</button>
+      <button type="button" class="btn btn-link" (click)="closeFileModal($event)" translate>Avbryt</button>
+    </div>
+  </form>
+</ng-template>

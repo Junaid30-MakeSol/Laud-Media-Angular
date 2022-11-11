@@ -1,0 +1,82 @@
+<ng-template #productModal let-modal>
+  <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" translate>Product.Add</h4>
+      <button type="button" class="close" aria-label="Close" (click)="closeProductModal($event)"></button>
+    </div>
+
+    <div class="modal-body">
+      <div class="form-horizontal">
+        <div class="row">
+          <label class="col-sm-3 col-form-label text-right font-weight-bold" translate>Product.Name</label>
+          <div class="col-sm-9 form-group" [customErrorMessages]="customErrorMessages">
+            <label style="display: none;" translate>Product.Name </label>
+            <input type="text" formControlName="Name" class="form-control" maxlength="50" placeholder="Ex. Delivered" />
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-3 col-form-label text-right font-weight-bold" translate>Product.Number</label>
+          <div class="col-sm-9 form-group" [customErrorMessages]="customErrorMessages">
+            <label style="display: none;" translate>Product.Number</label>
+            <input
+              type="text"
+              formControlName="Number"
+              class="form-control"
+              maxlength="20"
+              placeholder="ex. DHL-DEL-OK"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-3 col-form-label text-right font-weight-bold" translate>Product.Description</label>
+          <div class="col-sm-9 form-group" [customErrorMessages]="customErrorMessages">
+            <label style="display: none;" translate>Product.Description</label>
+            <textarea
+              ngbAutofocus
+              rows="10"
+              cols="100"
+              formControlName="Description"
+              class="form-control"
+              maxlength="500"
+            ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-3 col-form-label text-right font-weight-bold" translate>Product.Price</label>
+          <div class="col-sm-9 form-group" [customErrorMessages]="customErrorMessages">
+            <label style="display: none;" translate>Product.Price</label>
+            <input
+              type="text"
+              formControlName="Price"
+              class="form-control"
+              maxlength="9"
+              placeholder="Ex.150"
+              inputmode="numeric"
+              customDigitOnly
+              decimal="true"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-3 col-form-label text-right font-weight-bold" translate>Product.Deactivate</label>
+          <div class="col-sm-9 form-group" [customErrorMessages]="customErrorMessages">
+            <label style="display: none;" translate>Product.Deactivate</label>
+            <ui-switch
+              checkedLabel="{{ 'Product.Active' | translate }}"
+              uncheckedLabel="{{ 'Product.Inactive' | translate }}"
+              [checked]="true"
+              formControlName="Status"
+              value="1"
+            >
+            </ui-switch>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-default btn-success" translate>Global.Save</button>
+      <button type="button" class="btn btn-outline" (click)="closeProductModal($event)" translate>Global.Cancel</button>
+    </div>
+  </form>
+</ng-template>

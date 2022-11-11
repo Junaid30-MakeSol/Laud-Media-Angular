@@ -1,0 +1,36 @@
+<ng-template #certificateModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Reg. Nummer</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeCertificateModal($event)"></button>
+  </div>
+  <div class="modal-body">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th><span>Navn</span></th>
+          <td>{{ certificate?.Name }}</td>
+        </tr>
+        <tr>
+          <th><span>Reg.Nummer</span></th>
+          <td>{{ certificate?.GNumber }}<br /></td>
+        </tr>
+        <tr>
+          <th><span>Firmanavn</span></th>
+          <td>{{ certificate?.CompanyName }}</td>
+        </tr>
+        <tr>
+          <th><span>Registreringsdato</span></th>
+          <td>
+            {{ certificate?.CertificationDate | date: 'dd.MM.yyyy' }}
+          </td>
+        </tr>
+        <tr>
+          <th><span>Utløpsdato</span></th>
+          <td>
+            {{ certificate?.ExpiryDate | date: 'dd.MM.yyyy' }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

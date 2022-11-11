@@ -1,0 +1,57 @@
+<ng-template #companyModal let-modal>
+  <div class="popup-detail">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"></h4>
+      <button type="button" class="close" aria-label="Close" (click)="closeCompanyModal($event)"></button>
+    </div>
+    <div id="pdf" class="modal-body" style="max-width: 640px; padding: 15px;">
+      <div style="margin-left: 15px; margin-bottom: 20px;">
+        <img src="/assets/images/RVB_Logo.png" class="rvb" style="width: 200px; margin-top: 15px;" />
+      </div>
+      <div class="row">
+        <h3 style="font-weight: bold; margin-top: 30px; font-size: 18px;">
+          REGISTRERING SOM KOMPETENT VIRKSOMHET NR. {{ company?.KvNummer }}
+        </h3>
+      </div>
+
+      <div class="row">
+        <p>
+          <br />Rådet for vedlikehold av brannslokkemateriell (Rådet) har
+          {{ company?.RegistrationDate | date: 'dd.MM.yyyy' }}
+          registrert
+        </p>
+      </div>
+
+      <div class="row company-name">
+        <h3 style="font-weight: bold; margin-top: 30px; font-size: 18px;">{{ company?.CompanyName }}</h3>
+      </div>
+
+      <div class="row">
+        <p>
+          <br />som kompetent virksomhet for vedlikehold av håndslokkere og brannslangetromler.<br /><br />
+          Registreringen er gyldig til {{ company?.ExpiryDate | date: 'dd.MM.yyyy' }}. Registreringen forutsetter at
+          Rådets<br />utfyllende bestemmelser blir fulgt og at virksomheten på forespørsel kan dokumentere dette.
+        </p>
+      </div>
+
+      <div class="row">
+        <p><br /><br />Lysaker, {{ date | date: 'dd.MM.yyyy' }}<br /><br /><br /></p>
+      </div>
+
+      <div class="row">
+        <p>
+          Sekreteriatet
+          <br />
+          RVB
+        </p>
+      </div>
+    </div>
+
+    <div class="text-right" style="margin-right: 40px; margin-bottom: 20px;">
+      <button class="btn btn-default" onclick="window.print()">
+        <i class="fa fa-user"></i>
+        <span>Print</span>
+      </button>
+    </div>
+  </div>
+</ng-template>

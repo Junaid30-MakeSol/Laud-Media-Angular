@@ -1,0 +1,27 @@
+<div class="prehead-section">
+  <div class="page-header">
+    <h1>
+      <span translate>Global.Notes</span>
+      <small><br /><span translate>Global.Notes List</span></small>
+      <div class="pull-right">
+        <button class="btn btn-default" (click)="newNotes()">
+          <span translate>Global.Notes AddButton</span>
+        </button>
+      </div>
+    </h1>
+  </div>
+</div>
+
+<div class="panel panel-default" *ngFor="let note of notes">
+  <div class="panel-body">
+    <div class="panel-table-margins">
+      <strong>Dato: </strong> {{ note.NotesDate | date: 'dd.MM.yyyy HH:mm' }} <br /><strong>Brukernavn: </strong>
+      {{ note.Name }} <br /><br /><strong>Tekst: </strong><br />
+      <div>
+        {{ note.Text }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-notes-add [entityId]="entityId" (notesCreatedChange)="notesCreated()"></app-notes-add>

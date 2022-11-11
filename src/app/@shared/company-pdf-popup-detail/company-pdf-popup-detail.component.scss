@@ -1,0 +1,25 @@
+.popup-detail {
+  color: #666 !important;
+  h3 {
+    color: black !important;
+  }
+}
+@media print {
+  html body {
+    .popup-detail {
+      font-size: 23px !important;
+      h3 {
+        font-size: 27px !important;
+      }
+      img.rvb {
+        width: 350px !important;
+        margin: -40px 0 180px 0 !important;
+      }
+      .company-name {
+        justify-content: center !important;
+        text-align: center !important;
+        display: block !important;
+      }
+    }
+  }
+}

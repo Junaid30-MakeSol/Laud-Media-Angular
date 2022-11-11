@@ -1,0 +1,18 @@
+<div class="panel panel-default attachments-list">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      Dokumenter
+    </h4>
+  </div>
+
+  <form ourForm="ngForm">
+    <div *ngFor="let file of files" class="">
+      <div class="attachment">
+        <a href="{{ baseUrl }}{{ file.FileUploadedName }}" download> {{ file.FileName }}</a>
+        <span>
+          {{ file.FileDescription }}
+        </span>
+      </div>
+    </div>
+  </form>
+</div>

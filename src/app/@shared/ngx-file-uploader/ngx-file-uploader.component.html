@@ -1,0 +1,58 @@
+<div class="form-group row">
+  <div class="col-md-4">
+    <div class="panel panel-default upload-panel">
+      <div class="panel-heading">
+        <h4 class="panel-title">Last opp nye filer</h4>
+      </div>
+      <div class="panel-body">
+        <div>
+          <div
+            class="dropzone"
+            ngFileDrop
+            [options]="options"
+            (uploadOutput)="onUploadOutput($event)"
+            [uploadInput]="uploadInput"
+            [ngClass]="{ 'is-drop-over': dragOver }"
+          >
+            <div class="dropzone-graphic my-drop-zone well">
+              <h5>Drop filer her for å laste opp</h5>
+              <!-- <h6>Or click here to select local files.</h6> -->
+            </div>
+            <div class="fileinput-buttonbar" ng-hide="noSupport">
+              <span>
+                <span class="btn btn-default fileinput-button ng-binding" style="width: 100%;">
+                  <span ng-bind="btnText" class="ng-binding">Velg fil</span>
+                  <input
+                    type="file"
+                    class="fo-field"
+                    ngFileSelect
+                    [options]="options"
+                    (uploadOutput)="onUploadOutput($event)"
+                    [uploadInput]="uploadInput"
+                    multiple
+                  />
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div>
+            <ngb-progressbar
+              type="success"
+              showValue="true"
+              [striped]="false"
+              [animated]="false"
+              [value]="currentFile?.progress?.data?.percentage"
+              *ngIf="
+                currentFile != null &&
+                currentFile?.progress?.data?.percentage !== 0 &&
+                currentFile?.progress?.data?.percentage !== 100
+              "
+            >
+            </ngb-progressbar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
